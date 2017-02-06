@@ -51,6 +51,10 @@ createDataframe <- function(project_info="", project_data =""){
                 }
             }
 
+            if(exists("time", sampleindex)){
+                sampleindex$time <- sampleindex$time
+            }
+
             # Make sure answers are an array
             if(!exists("user_answers", sampleindex) || typeof(sampleindex$user_answers) == "character")
                 sampleindex$user_answers <- list()
@@ -147,7 +151,7 @@ createDataframe <- function(project_info="", project_data =""){
                     }
 
                     if(param == "time"){
-                        time <- as.POSIXlt((prot[[toString(param)]]/1000), origin="1970-01-01")
+                        time <- as.POSIXlt( ( as.numeric(prot[[toString(param)]]) / 1000 ), origin="1970-01-01" )
                         spreadsheet[[protocolID]][["time"]] <- c(spreadsheet[[protocolID]][["time"]], toString(time))
                         next
                     }

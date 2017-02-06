@@ -24,14 +24,14 @@ Create a data frame in a single step from the data of a Project. A user account 
 
 ```R
 url <- "https://photosynq.org/projects/getting-started-with-multispeq"
-dataframe <- PhotosynQ::getProject("jon.doe@domain.com",url)
+dataframe <- PhotosynQ::getProject("john.doe@domain.com",url)
 ```
 
 ### Separate Functions
 
 #### Login
 ```R
-login <- PhotosynQ::login("jon.doe@domain.com")
+login <- PhotosynQ::login("john.doe@domain.com")
 ```
 
 #### Logout
