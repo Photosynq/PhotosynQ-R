@@ -21,10 +21,11 @@ If you don't already have it, install **[RStudio]** first. Download the latest r
 
 ### Getting started
 Create a data frame in a single step from the data of a Project. A user account for [PhotosynQ] is required to access the data.
+You will find the ID of your project on the project page.
 
 ```R
-url <- "https://photosynq.org/projects/getting-started-with-multispeq"
-dataframe <- PhotosynQ::getProject("john.doe@domain.com",url)
+ID <- 1556
+dataframe <- PhotosynQ::getProject("john.doe@domain.com",ID)
 ```
 
 ### Separate Functions
@@ -41,14 +42,14 @@ PhotosynQ::login(login$token)
 
 #### Get Project Information
 ```R
-url <- "https://photosynq.org/projects/getting-started-with-multispeq"
-project_info <- PhotosynQ::getProjectInfo(login$email, login$token, url)
+ID <- 1556
+project_info <- PhotosynQ::getProjectInfo(login$email, login$token, ID)
 ```
 
 #### Get Project Data
 ```R
-url <- "https://photosynq.org/projects/getting-started-with-multispeq"
-project_data <- PhotosynQ::getProjectData(login$email, login$token, url)
+ID <- 1556
+project_data <- PhotosynQ::getProjectData(login$email, login$token, ID)
 ```
 
 #### Create a Data frame

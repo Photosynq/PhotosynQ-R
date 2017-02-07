@@ -1,6 +1,6 @@
 #' Logout from PhotosynQ
 #'
-#' This function allows you to logout from PhotosynQ after you are done with your session.
+#' This function allows you to logout from PhotosynQ after you finished with your session.
 #' @param token Your token from the initial login.
 #' @keywords logout
 #' @export

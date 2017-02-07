@@ -1,28 +1,29 @@
-#' Get Project Data in a DataFrame from PhotosynQ
+#' Get Project data in a Data Frame from PhotosynQ
 #'
-#' This function allows you to receive data from PhotosynQ.
-#' @param email Your email address you use to sign in
-#' @param projectURL The URL of your Project (Just copy the Project page URL from your browser)
+#' This function allows you to receive data from PhotosynQ and convert it into a  data frame.
+#' @param email Your email address you use to login
+#' @param projectID The ID of your Project (Just copy the Project ID from the project page or your user page)
+#' @param rawTraces Include the raw traces for each measurement (increases data size significantly!)
 #' @keywords Project Data 
 #' @export
 #' @examples
-#' getProject("john.doe@domain.com","https://photosynq.org/projects/getting-started-with-multispeq")
+#' getProject("john.doe@domain.com",1566,FALSE)
 
-getProject <- function(email="", projectURL=""){
-    if(email !="" && projectURL != ""){
+getProject <- function(email="", projectID="", rawTraces = FALSE){
+    if(email !="" && projectID != ""){
         login <- PhotosynQ::login(email)
         
         # Print a welcome statement
         print(paste("Successfully signed in as:", login$name, sep=" "))
         
         if(!is.null(login)){
-            project_info <- PhotosynQ::getProjectInfo(login$email, login$token, projectURL)
+            project_info <- PhotosynQ::getProjectInfo(login$email, login$token, projectID)
             
             # Print Project name
             print(paste("Project:", project_info$name, sep=" "))
 
             if(!is.null(project_info)){
-                project_data <- PhotosynQ::getProjectData(login$email, login$token, projectURL)
+                project_data <- PhotosynQ::getProjectData(login$email, login$token, projectID, rawTraces)
                 if(!is.null(project_data)){
 
                     dl <- createDataframe(project_info,project_data)

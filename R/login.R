@@ -33,9 +33,15 @@ login <- function(email=""){
             return(NULL)
         }
         content <- content(request)
-        paste("Hello", content$user$name, sep=" ")
-        result <- list(email=content$user$email,token=content$user$auth_token,name=content$user$name)
-        return(result)
+        if(content$status == "success"){
+            paste("Hello", content$user$name, sep=" ")
+            result <- list(email=content$user$email,token=content$user$auth_token,name=content$user$name)
+            return(result)
+        }
+        else if(content$status == "failed"){
+            print(content$notice)
+            return(NULL)
+        }
     }
     else {
         print("Warning: Please provide your email to login.")

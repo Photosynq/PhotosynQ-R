@@ -1,10 +1,10 @@
-#' Create a DataFrame from PhotosynQ Project Data
+#' Generate a Data Frame from PhotosynQ project data
 #'
-#' This function allows you to create a dataframe based on the
-#' Project information and Project data receive data from PhotosynQ.
+#' This function allows you to create a  data frame based on the
+#' Project information and project data receive from PhotosynQ.
 #' @param project_info Object returned by getProjectInfo()
 #' @param project_data Object returned by getProjectData()
-#' @keywords Project Data dataframe
+#' @keywords Project data frame
 #' @export
 #' @examples
 #' createDataframe(project_info,project_data)
@@ -14,7 +14,7 @@ createDataframe <- function(project_info="", project_data =""){
     if(!is.null(project_info) && !is.null(project_data)){
 
         # Print Project data receival information
-        print("Project data received, generating dataframe.")
+        print("Project data received, generating  data frame.")
 
         # Exclusion list
         ToExclude <- c("protocol_number","protocol_id","id","protocol_name","baseline_values","chlorophyll_spad_calibration","averages","data_raw","baseline_sample","HTML","Macro","GraphType","time","time_offset","get_ir_baseline","get_blank_cal","get_userdef0","get_userdef1","get_userdef2","get_userdef3","get_userdef4","get_userdef5","get_userdef6","get_userdef7","get_userdef8","get_userdef9","get_userdef10","get_userdef11","get_userdef12","get_userdef13","get_userdef14","get_userdef15","get_userdef16","get_userdef17","get_userdef18","get_userdef19","get_userdef20","r","g","b","recall","messages","order")
@@ -167,12 +167,12 @@ createDataframe <- function(project_info="", project_data =""){
                     }                                                                
 
                     if(param == "longitude"){
-                        spreadsheet[[protocolID]][["longitude"]] <- c(spreadsheet[[protocolID]][["longitude"]], toString(measurement$location[[1]]))
+                        spreadsheet[[protocolID]][["longitude"]] <- c(spreadsheet[[protocolID]][["longitude"]], as.numeric(measurement$location[[1]]))
                         next
                     }                                                                
 
                     if(param == "latitute"){
-                        spreadsheet[[protocolID]][["latitute"]] <- c(spreadsheet[[protocolID]][["latitute"]], toString(measurement$location[[2]]))
+                        spreadsheet[[protocolID]][["latitute"]] <- c(spreadsheet[[protocolID]][["latitute"]], as.numeric(measurement$location[[2]]))
                         next
                     }  
 
@@ -193,9 +193,10 @@ createDataframe <- function(project_info="", project_data =""){
                     }
 
                     if( is.atomic(prot[[toString(param)]]) ){
-                        spreadsheet[[protocolID]][[param]] <- c(spreadsheet[[protocolID]][[param]], toString(prot[[toString(param)]]))
-                    }else{
+                        # Perhaps this might be needed
                         spreadsheet[[protocolID]][[param]] <- c(spreadsheet[[protocolID]][[param]], prot[[toString(param)]])
+                    }else{
+                        spreadsheet[[protocolID]][[param]] <- c(spreadsheet[[protocolID]][[param]], toString(prot[[toString(param)]]))
                     }
                 }
 
