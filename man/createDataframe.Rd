@@ -2,7 +2,7 @@
 % Please edit documentation in R/createDataframe.R
 \name{createDataframe}
 \alias{createDataframe}
-\title{Create a DataFrame from PhotosynQ Project Data}
+\title{Generate a Data Frame from PhotosynQ project data}
 \usage{
 createDataframe(project_info = "", project_data = "")
 }
@@ -12,12 +12,12 @@ createDataframe(project_info = "", project_data = "")
 \item{project_data}{Object returned by getProjectData()}
 }
 \description{
-This function allows you to create a dataframe based on the
-Project information and Project data receive data from PhotosynQ.
+This function allows you to create a  data frame based on the
+Project information and project data receive from PhotosynQ.
 }
 \examples{
 createDataframe(project_info,project_data)
 }
-\keyword{Data}
 \keyword{Project}
-\keyword{dataframe}
+\keyword{data}
+\keyword{frame}

@@ -4,20 +4,20 @@
 \alias{getProjectInfo}
 \title{Get Project Information from PhotosynQ}
 \usage{
-getProjectInfo(email = "", token = "", projectURL = "")
+getProjectInfo(email = "", token = "", projectID = "")
 }
 \arguments{
 \item{email}{Your email address you use to login}
 
-\item{token}{Your password you use to sign in}
+\item{token}{Your login token from the login function}
 
-\item{projectURL}{The URL of your Project (Just copy the Project page URL from your browser)}
+\item{projectID}{The ID of your Project (Just copy the Project ID from the project page or your user page)}
 }
 \description{
-This function allows you to sign in to PhotosynQ and receive your authentication token.
+This function allows you to receive the information about a project from PhotosynQ.
 }
 \examples{
-getProjectInfo("john.doe@gmail.com","A67DHsajjshda78","https://photosynq.org/projects/getting-started-with-multispeq")
+getProjectInfo("john.doe@domain.com","A67DHsajjshda78",1566)
 }
 \keyword{Information}
 \keyword{Project}

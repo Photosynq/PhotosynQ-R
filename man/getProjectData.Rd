@@ -4,20 +4,24 @@
 \alias{getProjectData}
 \title{Get Project Data from PhotosynQ}
 \usage{
-getProjectData(email = "", token = "", projectURL = "")
+getProjectData(email = "", token = "", projectID = "",
+  rawTraces = FALSE)
 }
 \arguments{
-\item{email}{Your email address you use to sign in}
+\item{email}{Your email address you use to login}
 
-\item{token}{Your password you use to sign in}
+\item{token}{Your login token from the login function}
 
-\item{projectURL}{The URL of your Project (Just copy the Project page URL from your browser)}
+\item{projectID}{The ID of your Project (Just copy the Project ID from the project page or your user page)}
+
+\item{rawTraces}{Include the raw traces for each measurement (increases data size significantly!)}
 }
 \description{
-This function allows you to receive data from PhotosynQ.
+This function allows you to receive data from PhotosynQ for a specific project.
+The revceived data is in the original JSON structure.
 }
 \examples{
-getProjectData("john.doe@gmail.com","A67DHsajjshda78","https://photosynq.org/projects/getting-started-with-multispeq")
+getProjectData("john.doe@domain.com","A67DHsajjshda78",1566, FALSE)
 }
 \keyword{Data}
 \keyword{Project}

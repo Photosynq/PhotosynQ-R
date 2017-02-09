@@ -2,20 +2,22 @@
 % Please edit documentation in R/getProject.R
 \name{getProject}
 \alias{getProject}
-\title{Get Project Data in a DataFrame from PhotosynQ}
+\title{Get Project data in a Data Frame from PhotosynQ}
 \usage{
-getProject(email = "", projectURL = "")
+getProject(email = "", projectID = "", rawTraces = FALSE)
 }
 \arguments{
-\item{email}{Your email address you use to sign in}
+\item{email}{Your email address you use to login}
 
-\item{projectURL}{The URL of your Project (Just copy the Project page URL from your browser)}
+\item{projectID}{The ID of your Project (Just copy the Project ID from the project page or your user page)}
+
+\item{rawTraces}{Include the raw traces for each measurement (increases data size significantly!)}
 }
 \description{
-This function allows you to receive data from PhotosynQ.
+This function allows you to receive data from PhotosynQ and convert it into a  data frame.
 }
 \examples{
-getProject("john.doe@gmail.com","SecurePassword","https://photosynq.org/projects/getting-started-with-multispeq")
+getProject("john.doe@domain.com",1566,FALSE)
 }
 \keyword{Data}
 \keyword{Project}

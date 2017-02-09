@@ -231,7 +231,12 @@ createDataframe <- function(project_info="", project_data =""){
             i <- i + 1
         }
 
-        return(spreadsheet)
+        # And fnally, we convert the list of lists to a list of data frames
+        dfs <- list();
+        for(protocol in names(spreadsheet)){
+            dfs[[protocol]] <- data.frame(spreadsheet[[protocol]])
+        }
+        return(dfs)
     }
     else{
         print("Warning: Missing objects")

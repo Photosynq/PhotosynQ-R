@@ -10,7 +10,7 @@ logout(token = "")
 \item{token}{Your token from the initial login.}
 }
 \description{
-This function allows you to logout from PhotosynQ after you are done with your session.
+This function allows you to logout from PhotosynQ after you finished with your session.
 }
 \examples{
 logout("A67DHsajjshda78")
