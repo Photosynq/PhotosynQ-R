@@ -194,7 +194,12 @@ createDataframe <- function(project_info="", project_data =""){
 
                     if( is.atomic(prot[[toString(param)]]) ){
                         # Perhaps this might be needed
-                        spreadsheet[[protocolID]][[param]] <- c(spreadsheet[[protocolID]][[param]], prot[[toString(param)]])
+                        if(is.null( prot[[toString(param)]]) ){
+                            spreadsheet[[protocolID]][[param]] <- c(spreadsheet[[protocolID]][[param]], NA)
+                        }
+                        else{
+                            spreadsheet[[protocolID]][[param]] <- c(spreadsheet[[protocolID]][[param]], prot[[toString(param)]])
+                        }
                     }else{
                         spreadsheet[[protocolID]][[param]] <- c(spreadsheet[[protocolID]][[param]], toString(prot[[toString(param)]]))
                     }
