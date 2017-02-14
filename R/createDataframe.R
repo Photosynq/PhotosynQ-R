@@ -14,7 +14,7 @@ createDataframe <- function(project_info="", project_data =""){
     if(!is.null(project_info) && !is.null(project_data)){
 
         # Print Project data receival information
-        print("Project data received, generating  data frame.")
+        print("Project data received, generating data frame.")
 
         # Exclusion list
         ToExclude <- c("protocol_number","protocol_id","id","protocol_name","baseline_values","chlorophyll_spad_calibration","averages","data_raw","baseline_sample","HTML","Macro","GraphType","time","time_offset","get_ir_baseline","get_blank_cal","get_userdef0","get_userdef1","get_userdef2","get_userdef3","get_userdef4","get_userdef5","get_userdef6","get_userdef7","get_userdef8","get_userdef9","get_userdef10","get_userdef11","get_userdef12","get_userdef13","get_userdef14","get_userdef15","get_userdef16","get_userdef17","get_userdef18","get_userdef19","get_userdef20","r","g","b","recall","messages","order")
@@ -50,8 +50,11 @@ createDataframe <- function(project_info="", project_data =""){
                     sampleindex$location <- strsplit(sampleindex$location,",")
                 }
             }
+            else{
+                sampleindex[['location']] <- NA
+            }
 
-            if(exists("time", sampleindex)){
+            if(!exists("time", sampleindex)){
                 sampleindex$time <- sampleindex$time
             }
 
@@ -141,8 +144,18 @@ createDataframe <- function(project_info="", project_data =""){
         }
 
         for(measurement in project_data){
+
+
             for(prot in measurement$sample){
                 protocolID <- toString(prot[["protocol_id"]])
+
+                for(a in names(answers)){
+                    id <- strsplit(a,"_")[[1]][2]
+                    if(!exists(id, measurement$user_answers)){
+                        measurement$user_answers[[toString(id)]] <- NA
+                    }
+                }
+
                 for(param in names(spreadsheet[[protocolID]])){
 
                     if(param == "datum_id"){
@@ -167,12 +180,22 @@ createDataframe <- function(project_info="", project_data =""){
                     }                                                                
 
                     if(param == "longitude"){
-                        spreadsheet[[protocolID]][["longitude"]] <- c(spreadsheet[[protocolID]][["longitude"]], as.numeric(measurement$location[[1]]))
+                        if(is.null(measurement$location) || is.na(measurement$location)){
+                            spreadsheet[[protocolID]][["longitude"]] <- c(spreadsheet[[protocolID]][["longitude"]], NA)
+                        }
+                        else{
+                            spreadsheet[[protocolID]][["longitude"]] <- c(spreadsheet[[protocolID]][["longitude"]], as.numeric(measurement$location[[1]]))
+                        }
                         next
                     }                                                                
 
                     if(param == "latitute"){
-                        spreadsheet[[protocolID]][["latitute"]] <- c(spreadsheet[[protocolID]][["latitute"]], as.numeric(measurement$location[[2]]))
+                        if(is.null(measurement$location) || is.na(measurement$location)){
+                            spreadsheet[[protocolID]][["latitute"]] <- c(spreadsheet[[protocolID]][["latitute"]], NA)
+                        }
+                        else{
+                            spreadsheet[[protocolID]][["latitute"]] <- c(spreadsheet[[protocolID]][["latitute"]], as.numeric(measurement$location[[2]]))
+                        }
                         next
                     }  
 
@@ -189,6 +212,11 @@ createDataframe <- function(project_info="", project_data =""){
                     if(substr(param,0,7) == "answer_"){
                         answer <- strsplit(param,"_")[[1]][2]
                         spreadsheet[[protocolID]][[param]] <- c(spreadsheet[[protocolID]][[param]], measurement$user_answers[[toString(answer)]])
+                        next
+                    }
+
+                    if(!exists( toString(param), prot) ){
+                        spreadsheet[[protocolID]][[param]] <- c(spreadsheet[[protocolID]][[param]], NA)
                         next
                     }
 
@@ -231,7 +259,7 @@ createDataframe <- function(project_info="", project_data =""){
             i <- i + 1
         }
 
-        # And fnally, we convert the list of lists to a list of data frames
+        # And finally, we convert the list of lists to a list of data frames
         dfs <- list();
         for(protocol in names(spreadsheet)){
             dfs[[protocol]] <- data.frame(spreadsheet[[protocol]])
