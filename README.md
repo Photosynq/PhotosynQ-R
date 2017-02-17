@@ -20,19 +20,36 @@ If you don't already have it, install **[RStudio]** first. Download the latest r
 ***
 
 ### Getting started
-Create a data frame in a single step from the data of a Project. A user account for [PhotosynQ] is required to access the data.
-You will find the ID of your project on the project page.
+Create a list of data frames in a single step from the data of a Project. Each frame in the list represents one measurment protocol. A user account for [PhotosynQ] is required to access the data. You will find the `ID` of your project on the **project page**.
 
 ```R
 ID <- 1556
-dataframe <- PhotosynQ::getProject("john.doe@domain.com",ID)
+dfs <- PhotosynQ::getProject("john.doe@domain.com",ID)
 ```
+
+#### Preparing the data for analysis
+The **flagged measurements are included** in the dataset and most likely needs to be removed for futher analysis. You can use the `filter()` function of the `dplyr` library to remove the flagged measurement from the data frame. You might want to use the same function to select a subset of measurement from your data frame.
+
+```R
+# Select a Protocol from the List of Data Frames
+df <- dfs$`Protocol Name`
+
+# View the Protocol Output
+View(df)
+
+# Filter out flagged data
+library(dplyr)
+df_filtered <- filter(df, status == "submitted")
+```
+
+***
 
 ### Separate Functions
 
 #### Login
 ```R
-login <- PhotosynQ::login("john.doe@domain.com")
+email <- "john.doe@domain.com"
+login <- PhotosynQ::login(email)
 ```
 
 #### Logout
