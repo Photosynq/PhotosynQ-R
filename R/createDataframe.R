@@ -139,8 +139,8 @@ createDataframe <- function(project_info="", project_data =""){
             spreadsheet[[p]][["device_id"]] <- c(1)
             spreadsheet[[p]][["status"]] <- c(1)
             spreadsheet[[p]][["notes"]] <- c(1)
+            spreadsheet[[p]][["latitude"]] <- c(1)
             spreadsheet[[p]][["longitude"]] <- c(1)
-            spreadsheet[[p]][["latitute"]] <- c(1)
         }
 
         for(measurement in project_data){
@@ -179,25 +179,25 @@ createDataframe <- function(project_info="", project_data =""){
                         next
                     }                                                                
 
+                    if(param == "latitude"){
+                        if(is.null(measurement$location) || is.na(measurement$location)){
+                            spreadsheet[[protocolID]][["latitude"]] <- c(spreadsheet[[protocolID]][["latitude"]], NA)
+                        }
+                        else{
+                            spreadsheet[[protocolID]][["latitude"]] <- c(spreadsheet[[protocolID]][["latitude"]], as.numeric(measurement$location[[1]]))
+                        }
+                        next
+                    }
+
                     if(param == "longitude"){
                         if(is.null(measurement$location) || is.na(measurement$location)){
                             spreadsheet[[protocolID]][["longitude"]] <- c(spreadsheet[[protocolID]][["longitude"]], NA)
                         }
                         else{
-                            spreadsheet[[protocolID]][["longitude"]] <- c(spreadsheet[[protocolID]][["longitude"]], as.numeric(measurement$location[[1]]))
+                            spreadsheet[[protocolID]][["longitude"]] <- c(spreadsheet[[protocolID]][["longitude"]], as.numeric(measurement$location[[2]]))
                         }
                         next
                     }                                                                
-
-                    if(param == "latitute"){
-                        if(is.null(measurement$location) || is.na(measurement$location)){
-                            spreadsheet[[protocolID]][["latitute"]] <- c(spreadsheet[[protocolID]][["latitute"]], NA)
-                        }
-                        else{
-                            spreadsheet[[protocolID]][["latitute"]] <- c(spreadsheet[[protocolID]][["latitute"]], as.numeric(measurement$location[[2]]))
-                        }
-                        next
-                    }  
 
                     if(param == "notes"){
                         spreadsheet[[protocolID]][["notes"]] <- c(spreadsheet[[protocolID]][["notes"]], toString(measurement$note))

@@ -1,6 +1,6 @@
 Package: PhotosynQ
 Title: Connect to PhotosynQ
-Version: 0.0.6
+Version: 0.0.7
 Authors@R: person("Sebastian", "Kuhlgert", email = "sebastian.kuhlgert@gmail.com", role = c("aut", "cre"))
 Description: This package helps to connect R to the PhotosynQ platform. It allows you to login and logout,
     as well as receive project information and project data. More importantly it transforms the received 
