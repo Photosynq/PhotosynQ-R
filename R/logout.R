@@ -16,9 +16,9 @@ logout <- function(token=""){
         }
         url <- "https://photosynq.org/api/v3/sign_out.json"
         request <- httr::DELETE(url, body= list("auth_token" = token))
-        print("Goodbye!")
+        cat("Goodbye!\n")
     }
     else {
-        print("Warning: You have to provide your login token.")
+        cat("Warning: You have to provide your login token.\n")
     }
 }

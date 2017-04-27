@@ -19,7 +19,7 @@ getProjectInfo <- function(email="", token="", projectID=""){
         url <- paste("https://photosynq.org/api/v3/projects/",toString(projectID),".json?user_email=",email,"&user_token=",token, sep="")
         request <- httr::GET(url)
         if(status_code(request) == 500){
-            print("Warning: Failed to get project info.")
+            cat("Warning: Failed to receive the project information.\n")
             return(NULL)
         }
         content <- content(request)
@@ -27,16 +27,16 @@ getProjectInfo <- function(email="", token="", projectID=""){
             return(content$project)
         }
         else if(content$status == "failed"){
-            print(content$notice)
+            cat(paste(content$notice,"\n", sep=""))
             return(NULL)
         }
         else{
-            print("Warning: There was an error receiving the project data")
+            cat("Warning: There was an error receiving the project data\n")
             return(NULL)
         }
     }
     else {
-        print("Warning: Project does not exist or is not available.")
+        cat("Warning: Project does not exist or is not available.\n")
         return(NULL)
     }
 }

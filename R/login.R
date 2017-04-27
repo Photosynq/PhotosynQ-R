@@ -23,28 +23,28 @@ login <- function(email=""){
         }
         pwd <- getPass(msg = "Your PhotosynQ Password: ", forcemask = FALSE)
         if(is.null(pwd)){
-            print("Info: Login canceled.")
+            cat("Info: Login canceled.\n")
             return(NULL) 
         }
         url <- "https://photosynq.org/api/v3/sign_in.json"
         request <- httr::POST(url, body= list("user[email]" = email,"user[password]" = pwd))
         if(status_code(request) == 500){
-            print("Warning: Failed to login.")
+            cat("Warning: Failed to login.\n")
             return(NULL)
         }
         content <- content(request)
         if(content$status == "success"){
-            paste("Hello", content$user$name, sep=" ")
+            cat("Successfully signed in as: ", content$user$name,"\n", sep=" ")
             result <- list(email=content$user$email,token=content$user$auth_token,name=content$user$name)
             return(result)
         }
         else if(content$status == "failed"){
-            print(content$notice)
+            cat(paste(content$notice,"\n", sep=""))
             return(NULL)
         }
     }
     else {
-        print("Warning: Please provide your email to login.")
+        cat("Warning: Please provide your email to login.\n")
         return(NULL)
     }
 }

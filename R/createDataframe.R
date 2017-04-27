@@ -14,10 +14,10 @@ createDataframe <- function(project_info="", project_data =""){
     if(!is.null(project_info) && !is.null(project_data)){
 
         # Print Project data receival information
-        print("Project data received, generating data frame.")
+        cat("Project data received, generating data frame.\n")
 
         # Exclusion list
-        ToExclude <- c("protocol_number","protocol_id","id","protocol_name","baseline_values","chlorophyll_spad_calibration","averages","data_raw","baseline_sample","HTML","Macro","GraphType","time","time_offset","get_ir_baseline","get_blank_cal","get_userdef0","get_userdef1","get_userdef2","get_userdef3","get_userdef4","get_userdef5","get_userdef6","get_userdef7","get_userdef8","get_userdef9","get_userdef10","get_userdef11","get_userdef12","get_userdef13","get_userdef14","get_userdef15","get_userdef16","get_userdef17","get_userdef18","get_userdef19","get_userdef20","r","g","b","recall","messages","order")
+        ToExclude <- c("protocol_number","protocol_id","id","protocol_name","baseline_values","chlorophyll_spad_calibration","averages","baseline_sample","HTML","Macro","GraphType","time","time_offset","get_ir_baseline","get_blank_cal","get_userdef0","get_userdef1","get_userdef2","get_userdef3","get_userdef4","get_userdef5","get_userdef6","get_userdef7","get_userdef8","get_userdef9","get_userdef10","get_userdef11","get_userdef12","get_userdef13","get_userdef14","get_userdef15","get_userdef16","get_userdef17","get_userdef18","get_userdef19","get_userdef20","r","g","b","recall","messages","order")
         
         # Since we have all the information ready
         # now it is time to preprocess the data
@@ -267,7 +267,7 @@ createDataframe <- function(project_info="", project_data =""){
         return(dfs)
     }
     else{
-        print("Warning: Missing objects")
+        cat("Warning: Missing objects\n")
         return(NULL)
     }
 }

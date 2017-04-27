@@ -67,6 +67,10 @@ project_info <- PhotosynQ::getProjectInfo(login$email, login$token, ID)
 ```R
 ID <- 1556
 project_data <- PhotosynQ::getProjectData(login$email, login$token, ID)
+
+# Use raw data
+processed_data <- FALSE
+project_data <- PhotosynQ::getProjectData(login$email, login$token, ID, processed_data)
 ```
 
 #### Create a Data frame
