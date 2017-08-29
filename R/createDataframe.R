@@ -98,11 +98,11 @@ createDataframe <- function(project_info="", project_data =""){
 
                 # Check if there is custom data
                 if(exists("custom", sampleindex)){
-                    protocols$custom <- protocols$custom + 1
+                    # Insert the parameter names and count the number of measurements
+                    protocols[["custom"]]$parameters <- c(protocols[["custom"]]$parameters, names(sampleindex$custom))
+                    protocols[["custom"]]$count <- protocols[["custom"]]$count + 1
                 }
-
             }
-
         }
 
         for(p in names(protocols)){
@@ -115,6 +115,7 @@ createDataframe <- function(project_info="", project_data =""){
         spreadsheet <- list();
         for(p in names(protocols)){
 
+            # If there are no measurements skip the protocol
             if(protocols[[p]]$count == 0){
                 next
             }
@@ -144,7 +145,6 @@ createDataframe <- function(project_info="", project_data =""){
         }
 
         for(measurement in project_data){
-
 
             for(prot in measurement$sample){
                 protocolID <- toString(prot[["protocol_id"]])
@@ -235,8 +235,90 @@ createDataframe <- function(project_info="", project_data =""){
 
             }
 
-        }
+            # Now we fill the spreadsheet with custom data
+            # It repeats the above code, but for now it is the fastest way...
 
+            if(exists("custom", measurement)){
+                protocolID <- "custom"
+                
+                for(param in names(spreadsheet[[protocolID]])){
+
+                    if(param == "datum_id"){
+                        spreadsheet[[protocolID]][["datum_id"]] <- c(spreadsheet[[protocolID]][["datum_id"]], measurement$datum_id )
+                        next
+                    }
+
+                    if(param == "time"){
+                        time <- as.POSIXlt( ( as.numeric(prot[[toString(param)]]) / 1000 ), origin="1970-01-01" )
+                        spreadsheet[[protocolID]][["time"]] <- c(spreadsheet[[protocolID]][["time"]], toString(time))
+                        next
+                    }
+
+                    if(param == "user_id"){
+                        spreadsheet[[protocolID]][["user_id"]] <- c(spreadsheet[[protocolID]][["user_id"]], toString(measurement$user_id))
+                        next
+                    }
+
+                    if(param == "device_id"){
+                        spreadsheet[[protocolID]][["device_id"]] <- c(spreadsheet[[protocolID]][["device_id"]], toString(measurement$device_id))
+                        next
+                    }                                                                
+
+                    if(param == "latitude"){
+                        if(is.null(measurement$location) || is.na(measurement$location)){
+                            spreadsheet[[protocolID]][["latitude"]] <- c(spreadsheet[[protocolID]][["latitude"]], NA)
+                        }
+                        else{
+                            spreadsheet[[protocolID]][["latitude"]] <- c(spreadsheet[[protocolID]][["latitude"]], as.numeric(measurement$location[[1]]))
+                        }
+                        next
+                    }
+
+                    if(param == "longitude"){
+                        if(is.null(measurement$location) || is.na(measurement$location)){
+                            spreadsheet[[protocolID]][["longitude"]] <- c(spreadsheet[[protocolID]][["longitude"]], NA)
+                        }
+                        else{
+                            spreadsheet[[protocolID]][["longitude"]] <- c(spreadsheet[[protocolID]][["longitude"]], as.numeric(measurement$location[[2]]))
+                        }
+                        next
+                    }                                                                
+
+                    if(param == "notes"){
+                        spreadsheet[[protocolID]][["notes"]] <- c(spreadsheet[[protocolID]][["notes"]], toString(measurement$note))
+                        next
+                    }
+
+                    if(param == "status"){
+                        spreadsheet[[protocolID]][["status"]] <- c(spreadsheet[[protocolID]][["status"]], toString(measurement$status))
+                        next
+                    }
+
+                    if(substr(param,0,7) == "answer_"){
+                        answer <- strsplit(param,"_")[[1]][2]
+                        spreadsheet[[protocolID]][[param]] <- c(spreadsheet[[protocolID]][[param]], measurement$user_answers[[toString(answer)]])
+                        next
+                    }
+
+                    if(!exists( toString(param), measurement$custom) ){
+                        spreadsheet[[protocolID]][[param]] <- c(spreadsheet[[protocolID]][[param]], NA)
+                        next
+                    }
+
+                    if( is.atomic(measurement$custom[[toString(param)]]) ){
+                        # Perhaps this might be needed
+                        if(is.null( measurement$custom[[toString(param)]]) ){
+                            spreadsheet[[protocolID]][[param]] <- c(spreadsheet[[protocolID]][[param]], NA)
+                        }
+                        else{
+                            spreadsheet[[protocolID]][[param]] <- c(spreadsheet[[protocolID]][[param]], measurement$custom[[toString(param)]])
+                        }
+                    }else{
+                        spreadsheet[[protocolID]][[param]] <- c(spreadsheet[[protocolID]][[param]], toString(measurement$custom[[toString(param)]]))
+                    }
+                }
+            }
+        }
         # Stupid, but we have to do this to remove the first row
         for(protocol in names(spreadsheet)){
             ii <- 1
