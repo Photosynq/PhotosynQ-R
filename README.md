@@ -9,9 +9,10 @@ PhotosynQ helps you to make your plant research more efficient. For an advanced 
 ***
 
 ### Installation
-If you don't already have it, install **[RStudio]** first. Download the latest release of the [PhotosynQ R package]. Select the file indicated as `Source code (tar.gz)`. This is the format required by RStudio.
+If you don't already have it, install **[RStudio]** first. 
  
 #### From Package Archive File
+Download the latest release of the [PhotosynQ R package]. Select the file indicated as `Source code (tar.gz)`. This is the format required by RStudio.
 1. Open **[RStudio]**
 2. Select **Tools** from the menu and click on **Install Packages**.
 3. Select *Install from:* `Package Archive File (.tgz; .tar-gz)`
