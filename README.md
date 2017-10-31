@@ -19,6 +19,7 @@ If you don't already have it, install **[RStudio]** first. Download the latest r
 5. Click on **Install** to finish the installation and close the dialog.
 
 #### Development version with devtools
+For users that already have a develepment environment, **[devtools]** provides an easy installation from the github repository.
 1. Open **[RStudio]**
 2. Install the release version of devtools from CRAN with `install.packages("devtools")`
 3. Make sure you have a working development environment.
@@ -96,3 +97,5 @@ dataframe <- PhotosynQ::createDataframe(project_info, project_data)
 [R]: https://www.r-project.org "R-Project"
 
 [RStudio]: https://www.rstudio.com "RStudio"
+
+[devtools]: https://github.com/hadley/devtools "devtools"
