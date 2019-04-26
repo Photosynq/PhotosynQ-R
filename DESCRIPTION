@@ -1,18 +1,18 @@
 Package: PhotosynQ
 Title: Connect to PhotosynQ
-Version: 0.0.9
+Version: 0.2.0
 Authors@R: person("Sebastian", "Kuhlgert", email = "sebastian.kuhlgert@gmail.com", role = c("aut", "cre"))
 Description: This package helps to connect R to the PhotosynQ platform. It allows you to login and logout,
     as well as receive project information and project data. More importantly it transforms the received 
     objects into a data frame, which can be used for further analysis.
-License: MIT
+License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 URL: https://github.com/Photosynq/PhotosynQ-R
 BugReports: https://github.com/Photosynq/PhotosynQ-R/issues
-RoxygenNote: 6.0.0.9000
+RoxygenNote: 6.1.1
 Depends:
     R (>= 3.2.4)
-Suggests:
-    httr,
-    getPass
+Imports:
+    httr (>= 1.4.0),
+    getPass (>= 0.2-2)
