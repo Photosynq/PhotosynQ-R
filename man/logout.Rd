@@ -4,15 +4,12 @@
 \alias{logout}
 \title{Logout from PhotosynQ}
 \usage{
-logout(token = "")
-}
-\arguments{
-\item{token}{Your token from the initial login.}
+logout()
 }
 \description{
 This function allows you to logout from PhotosynQ after you finished with your session.
 }
 \examples{
-logout("A67DHsajjshda78")
+logout()
 }
 \keyword{logout}

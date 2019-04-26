@@ -1,24 +1,29 @@
 #' Logout from PhotosynQ
 #'
 #' This function allows you to logout from PhotosynQ after you finished with your session.
-#' @param token Your token from the initial login.
 #' @keywords logout
-#' @export
+#' @export logout
 #' @examples
-#' logout("A67DHsajjshda78")
+#' logout()
 
-logout <- function(token=""){
-    if(token != ""){
+logout <- function(){
+    if(!is.null(photosynq.env$TOKEN) && photosynq.env$TOKEN != ""){
         httrFound <- require("httr",quietly = TRUE, warn.conflicts = FALSE, character.only = TRUE)
         if(!httrFound){
             install.packages("httr")
             library("httr",quietly = TRUE, warn.conflicts = FALSE, character.only = TRUE)
         }
-        url <- "https://photosynq.org/api/v3/sign_out.json"
-        request <- httr::DELETE(url, body= list("auth_token" = token))
+        url <- paste(photosynq.env$API_DOMAIN,photosynq.env$API_PATH, "sign_out.json", sep="/")
+        request <- httr::DELETE(url, body= list("auth_token" = photosynq.env$TOKEN))
+        assign( "EMAIL", NULL, envir = photosynq.env )
+        assign( "TOKEN", NULL, envir = photosynq.env )
+        assign( "API_DOMAIN", photosynq.env$DEFAULT_API_DOMAIN, envir = photosynq.env )
         cat("Goodbye!\n")
     }
     else {
-        cat("Warning: You have to provide your login token.\n")
+        assign( "EMAIL", NULL, envir = photosynq.env )
+        assign( "TOKEN", NULL, envir = photosynq.env )
+        assign( "API_DOMAIN", photosynq.env$DEFAULT_API_DOMAIN, envir = photosynq.env )
+        cat("Warning: It seems you are already signed out.\n")
     }
 }
