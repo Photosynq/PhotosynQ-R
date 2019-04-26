@@ -4,24 +4,22 @@
 \alias{getProjectData}
 \title{Get Project Data from PhotosynQ}
 \usage{
-getProjectData(email = "", token = "", projectID = "",
+getProjectData(projectID = "", processedData = TRUE,
   rawTraces = FALSE)
 }
 \arguments{
-\item{email}{Your email address you use to login}
-
-\item{token}{Your login token from the login function}
-
 \item{projectID}{The ID of your Project (Just copy the Project ID from the project page or your user page)}
 
-\item{rawTraces}{Include the raw traces for each measurement (increases data size significantly!)}
+\item{processedData}{(optional) Receive the processed data when set to TRUE, receive raw Data when set to FALSE. (raw data will increases data size significantly!)}
+
+\item{rawTraces}{(optional) Adds raw traces to processed data. It is ignored when processedData is set to TRUE. (increases data size significantly!)}
 }
 \description{
 This function allows you to receive data from PhotosynQ for a specific project.
 The revceived data is in the original JSON structure.
 }
 \examples{
-getProjectData("john.doe@domain.com","A67DHsajjshda78",1566, FALSE)
+getProjectData(1566)
 }
 \keyword{Data}
 \keyword{Project}
