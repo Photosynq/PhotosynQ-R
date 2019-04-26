@@ -4,20 +4,20 @@
 \alias{getProject}
 \title{Get Project data in a Data Frame from PhotosynQ}
 \usage{
-getProject(email = "", projectID = "", rawTraces = FALSE)
+getProject(projectID = "", processedData = TRUE, rawTraces = FALSE)
 }
 \arguments{
-\item{email}{Your email address you use to login}
-
 \item{projectID}{The ID of your Project (Just copy the Project ID from the project page or your user page)}
 
-\item{rawTraces}{Include the raw traces for each measurement (increases data size significantly!)}
+\item{processedData}{(optional) Receive the processed data when set to TRUE, receive raw Data when set to FALSE. (raw data will increases data size significantly!)}
+
+\item{rawTraces}{(optional) Adds raw traces to processed data. It is ignored when processedData is set to TRUE. (increases data size significantly!)}
 }
 \description{
 This function allows you to receive data from PhotosynQ and convert it into a  data frame.
 }
 \examples{
-getProject("john.doe@domain.com",1566,FALSE)
+getProject(1566)
 }
 \keyword{Data}
 \keyword{Project}
