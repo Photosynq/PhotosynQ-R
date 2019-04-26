@@ -4,7 +4,7 @@
 \alias{createDataframe}
 \title{Generate a Data Frame from PhotosynQ project data}
 \usage{
-createDataframe(project_info = "", project_data = "")
+createDataframe(project_info = NULL, project_data = NULL)
 }
 \arguments{
 \item{project_info}{Object returned by getProjectInfo()}
@@ -16,7 +16,9 @@ This function allows you to create a  data frame based on the
 Project information and project data receive from PhotosynQ.
 }
 \examples{
-createDataframe(project_info,project_data)
+project_info <- getProjectInfo(1566)
+project_data <- getProjectData(1566)
+createDataframe(project_info, project_data)
 }
 \keyword{Project}
 \keyword{data}

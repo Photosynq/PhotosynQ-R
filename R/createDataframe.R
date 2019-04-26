@@ -5,11 +5,13 @@
 #' @param project_info Object returned by getProjectInfo()
 #' @param project_data Object returned by getProjectData()
 #' @keywords Project data frame
-#' @export
+#' @export createDataframe
 #' @examples
-#' createDataframe(project_info,project_data)
+#' project_info <- getProjectInfo(1566)
+#' project_data <- getProjectData(1566)
+#' createDataframe(project_info, project_data)
 
-createDataframe <- function(project_info="", project_data =""){
+createDataframe <- function(project_info = NULL, project_data = NULL){
 
     if(!is.null(project_info) && !is.null(project_data)){
 
