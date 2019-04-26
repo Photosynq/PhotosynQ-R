@@ -4,15 +4,18 @@
 \alias{login}
 \title{Login to PhotosynQ}
 \usage{
-login(email = "")
+login(email = "", url = photosynq.env$DEFAULT_API_DOMAIN)
 }
 \arguments{
 \item{email}{Your email address you use to login}
+
+\item{url}{(optional) Change the default URL to point to another instance}
 }
 \description{
-This function allows you to login to PhotosynQ and receive your authentication token.
-The functions getProjectInfo(), getProjectData() and logout() require the token to
-receive data from PhotosynQ
+This function allows you to login to PhotosynQ and start your session.
+The functions getProjectInfo(), getProjectData(), getProject() and logout()
+require a session started by login in.
+Login is only required once at the beginning of a session.
 }
 \examples{
 login("john.doe@domain.com")
