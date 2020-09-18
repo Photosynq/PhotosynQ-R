@@ -153,7 +153,7 @@ createDataframe <- function(project_info = NULL, project_data = NULL){
 
                 for(a in names(answers)){
                     id <- strsplit(a,"_")[[1]][2]
-                    if(!exists(id, measurement$user_answers)){
+                    if(is.null(measurement$user_answers) || !exists(id, measurement$user_answers)){
                         measurement$user_answers[[toString(id)]] <- NA
                     }
                 }
