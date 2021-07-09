@@ -14,7 +14,16 @@ getProject(projectID = "", processedData = TRUE, rawTraces = FALSE)
 \item{rawTraces}{(optional) Adds raw traces to processed data. It is ignored when processedData is set to TRUE. (increases data size significantly!)}
 }
 \description{
-This function allows you to receive data from PhotosynQ and convert it into a  data frame.
+Get Project data using the Project ID and create data frame(s).
+}
+\details{
+This function produces a data frame for a PhotosynQ Project using the Project's ID. The ID can be found on the
+Projects page on the PhotosynQ website. This function call includes the Project data as well as information.
+In case multiple protocols were used, each protocol is in a separate data frame. By default the 
+processed data is not included. The parameter rawTraces can be set to TRUE to include the rawTraces in combination with
+the processed data. By default the traces are not received.
+When the original data structure is needed, separate calles have to be used including getProjectInfo and getProjectData.
+Note: Including the raw data will increase the data size significantly.
 }
 \examples{
 getProject(1566)

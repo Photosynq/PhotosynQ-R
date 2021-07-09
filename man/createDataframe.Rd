@@ -12,8 +12,12 @@ createDataframe(project_info = NULL, project_data = NULL)
 \item{project_data}{Object returned by getProjectData()}
 }
 \description{
-This function allows you to create a  data frame based on the
-Project information and project data receive from PhotosynQ.
+This function creates a data frame with the data for a single PhotosynQ Project.
+}
+\details{
+This function allows to create a data frame based on the Project's information (getProjectInfo) and
+the Project's data (getProjectData). If more than one Protocol was used in a Project, the data frame
+contains multiple frames, each one named after the corresponding measurement Protocol.
 }
 \examples{
 project_info <- getProjectInfo(1566)

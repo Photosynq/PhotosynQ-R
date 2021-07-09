@@ -7,10 +7,11 @@ Description: This package helps to connect R to the PhotosynQ platform. It allow
     objects into a data frame, which can be used for further analysis.
 License: MIT + file LICENSE
 Encoding: UTF-8
+Language: en-US
 LazyData: true
 URL: https://github.com/Photosynq/PhotosynQ-R
 BugReports: https://github.com/Photosynq/PhotosynQ-R/issues
-RoxygenNote: 6.1.1
+RoxygenNote: 7.1.1
 Depends:
     R (>= 3.2.4)
 Imports:

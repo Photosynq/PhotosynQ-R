@@ -4,8 +4,7 @@
 \alias{getProjectData}
 \title{Get Project Data from PhotosynQ}
 \usage{
-getProjectData(projectID = "", processedData = TRUE,
-  rawTraces = FALSE)
+getProjectData(projectID = "", processedData = TRUE, rawTraces = FALSE)
 }
 \arguments{
 \item{projectID}{The ID of your Project (Just copy the Project ID from the project page or your user page)}
@@ -15,8 +14,14 @@ getProjectData(projectID = "", processedData = TRUE,
 \item{rawTraces}{(optional) Adds raw traces to processed data. It is ignored when processedData is set to TRUE. (increases data size significantly!)}
 }
 \description{
-This function allows you to receive data from PhotosynQ for a specific project.
-The revceived data is in the original JSON structure.
+Get Project Data using the Projects ID
+}
+\details{
+This function receives the data from PhotosynQ for a specific Project. The revceived data is in the original JSON structure.
+When setting the processedDate to FALSE the raw data will be received instead of the processed data. By default the 
+processed data is not included. The parameter rawTraces can be set to TRUE to include the rawTraces in combination with
+the processed data. By default the traces are not received.
+Note: Including the raw data will increase the data size significantly.
 }
 \examples{
 getProjectData(1566)

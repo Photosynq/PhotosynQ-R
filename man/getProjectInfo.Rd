@@ -10,7 +10,12 @@ getProjectInfo(projectID = "")
 \item{projectID}{The ID of your Project (Just copy the Project ID from the project page or your user page)}
 }
 \description{
-This function allows you to receive the information about a project from PhotosynQ.
+Get Project Information using the Projects ID
+}
+\details{
+This function receives the information about a project from PhotosynQ including used Protocols
+and Project Questions. The information is also required to process the Project's data for
+the data frame used in the createDateframe function.
 }
 \examples{
 getProjectInfo(1566)

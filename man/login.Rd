@@ -12,7 +12,10 @@ login(email = "", url = photosynq.env$DEFAULT_API_DOMAIN)
 \item{url}{(optional) Change the default URL to point to another instance}
 }
 \description{
-This function allows you to login to PhotosynQ and start your session.
+Login to PhotosynQ to allow data access.
+}
+\details{
+This function allows a user to login to PhotosynQ and start a session.
 The functions getProjectInfo(), getProjectData(), getProject() and logout()
 require a session started by login in.
 Login is only required once at the beginning of a session.

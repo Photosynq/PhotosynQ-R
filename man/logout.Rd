@@ -7,7 +7,11 @@
 logout()
 }
 \description{
-This function allows you to logout from PhotosynQ after you finished with your session.
+Logout from PhotosynQ and end session
+}
+\details{
+This function ends the current session and logs out the current user out from PhotosynQ.
+Use the login function to sign in again and start a new session if needed.
 }
 \examples{
 logout()
