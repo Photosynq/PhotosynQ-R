@@ -1,11 +1,17 @@
 #' Generate a Data Frame from PhotosynQ project data
-#'
-#' This function allows you to create a  data frame based on the
-#' Project information and project data receive from PhotosynQ.
+#' 
+#' This function creates a data frame with the data for a single PhotosynQ Project.
+#' 
+#' This function allows to create a data frame based on the Project's information (getProjectInfo) and
+#' the Project's data (getProjectData). If more than one Protocol was used in a Project, the data frame
+#' contains multiple frames, each one named after the corresponding measurement Protocol.
+#' 
 #' @param project_info Object returned by getProjectInfo()
 #' @param project_data Object returned by getProjectData()
-#' @keywords Project data frame
+#' 
 #' @export createDataframe
+#' 
+#' @keywords Project data frame
 #' @examples
 #' project_info <- getProjectInfo(1566)
 #' project_data <- getProjectData(1566)

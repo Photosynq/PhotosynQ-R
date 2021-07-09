@@ -1,28 +1,34 @@
 #' Login to PhotosynQ
-#'
-#' This function allows you to login to PhotosynQ and start your session.
+#' 
+#' Login to PhotosynQ to allow data access.
+#' 
+#' This function allows a user to login to PhotosynQ and start a session.
 #' The functions getProjectInfo(), getProjectData(), getProject() and logout()
 #' require a session started by login in.
 #' Login is only required once at the beginning of a session.
+#' 
 #' @param email Your email address you use to login
 #' @param url (optional) Change the default URL to point to another instance
-#' @keywords login
+#' 
 #' @export login
+#' @import httr getPass
+#'
+#' @keywords login
 #' @examples
 #' login("john.doe@domain.com")
 
 login <- function(email = "", url = photosynq.env$DEFAULT_API_DOMAIN){
     if(email !=""){
-        httrFound <- require("httr",quietly = TRUE, warn.conflicts = FALSE, character.only = TRUE)
-        if(!httrFound){
-            install.packages("httr")
-            library("httr",quietly = TRUE, warn.conflicts = FALSE, character.only = TRUE)
-        }
-        getPassFound <- require("getPass",quietly = TRUE, warn.conflicts = FALSE, character.only = TRUE)
-        if(!getPassFound){
-            install.packages("getPass")
-            library("getPass",quietly = TRUE, warn.conflicts = FALSE, character.only = TRUE)
-        }
+        # httrFound <- require("httr",quietly = TRUE, warn.conflicts = FALSE, character.only = TRUE)
+        # if(!httrFound){
+            # install.packages("httr")
+            # library("httr",quietly = TRUE, warn.conflicts = FALSE, character.only = TRUE)
+        # }
+        # getPassFound <- require("getPass",quietly = TRUE, warn.conflicts = FALSE, character.only = TRUE)
+        # if(!getPassFound){
+            # install.packages("getPass")
+            # library("getPass",quietly = TRUE, warn.conflicts = FALSE, character.only = TRUE)
+        # }
         pwd <- getPass(msg = "Your PhotosynQ Password: ", forcemask = FALSE)
         if(is.null(pwd)){
             cat("Info: Login canceled.\n")

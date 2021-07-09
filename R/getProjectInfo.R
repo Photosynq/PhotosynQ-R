@@ -1,19 +1,27 @@
 #' Get Project Information from PhotosynQ
 #'
-#' This function allows you to receive the information about a project from PhotosynQ.
+#' Get Project Information using the Projects ID
+#' 
+#' This function receives the information about a project from PhotosynQ including used Protocols
+#' and Project Questions. The information is also required to process the Project's data for
+#' the data frame used in the createDateframe function. 
+#' 
 #' @param projectID The ID of your Project (Just copy the Project ID from the project page or your user page)
-#' @keywords Project Information 
+#' 
 #' @export getProjectInfo
+#' @import httr
+#' 
+#' @keywords Project Information 
 #' @examples
 #' getProjectInfo(1566)
 
 getProjectInfo <- function(projectID = ""){
     if(!is.null(photosynq.env$TOKEN) && photosynq.env$TOKEN != "" && !is.null(photosynq.env$EMAIL) && photosynq.env$EMAIL != ""){
-        httrFound <- require("httr",quietly = TRUE, warn.conflicts = FALSE, character.only = TRUE)
-        if(!httrFound){
-            install.packages("httr")
-            library("httr",quietly = TRUE, warn.conflicts = FALSE, character.only = TRUE)
-        }
+        # httrFound <- require("httr",quietly = TRUE, warn.conflicts = FALSE, character.only = TRUE)
+        # if(!httrFound){
+        #     install.packages("httr")
+            # library("httr",quietly = TRUE, warn.conflicts = FALSE, character.only = TRUE)
+        # }
         if(projectID != ""){
             url <- paste(photosynq.env$API_DOMAIN,photosynq.env$API_PATH, "projects", toString(projectID), sep="/")
             url <- paste(url,".json?user_email=",photosynq.env$EMAIL,"&user_token=",photosynq.env$TOKEN, "&include_deleted=true", sep="")
