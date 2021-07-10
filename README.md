@@ -110,4 +110,4 @@ dataframe <- PhotosynQ::createDataframe(project_info, project_data)
 
 [RStudio]: https://www.rstudio.com "RStudio"
 
-[devtools]: https://github.com/hadley/devtools "devtools"
+[devtools]: https://github.com/r-lib/devtools "devtools"
