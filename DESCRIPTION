@@ -5,7 +5,7 @@ Authors@R: person("Sebastian", "Kuhlgert", email = "sebastian.kuhlgert@gmail.com
 Description: Connect R to the PhotosynQ platform. It allows to login and logout, as well as receive project
     information and project data. Further it transforms the received JSON objects into a data frame,
     which can be used for the final data analysis.
-License: MIT + file LICENSE
+License: MIT + file LICENCE
 Encoding: UTF-8
 Language: en-US
 LazyData: true
