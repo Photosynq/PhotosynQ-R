@@ -2,9 +2,9 @@ Package: PhotosynQ
 Title: Connect to PhotosynQ
 Version: 0.2.2
 Authors@R: person("Sebastian", "Kuhlgert", email = "sebastian.kuhlgert@gmail.com", role = c("aut", "cre"))
-Description: This package helps to connect R to the PhotosynQ platform. It allows you to login and logout,
-    as well as receive project information and project data. More importantly it transforms the received 
-    objects into a data frame, which can be used for further analysis.
+Description: Connect R to the PhotosynQ platform. It allows to login and logout, as well as receive project
+    information and project data. Further it transforms the received JSON objects into a data frame,
+    which can be used for the final data analysis.
 License: MIT + file LICENSE
 Encoding: UTF-8
 Language: en-US
