@@ -15,7 +15,9 @@
 #'
 #' @keywords login
 #' @examples
+#' \dontrun{
 #' login("john.doe@domain.com")
+#' }
 
 login <- function(email = "", url = photosynq.env$DEFAULT_API_DOMAIN){
     if(email !=""){

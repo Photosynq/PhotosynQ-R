@@ -21,6 +21,8 @@ require a session started by login in.
 Login is only required once at the beginning of a session.
 }
 \examples{
+\dontrun{
 login("john.doe@domain.com")
+}
 }
 \keyword{login}
