@@ -21,7 +21,7 @@ Get Project Information using the Project's ID
 This function receives the information about a project from 'PhotosynQ'
 including used Protocols and Project Questions. The information is also
 required to process the Project's data for the data frame used in the
-\code{\link{createDateframe}} function.
+\code{\link{createDataframe}} function.
 }
 \examples{
 getProjectInfo(1566)
