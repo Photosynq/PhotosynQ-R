@@ -2,16 +2,21 @@
 % Please edit documentation in R/logout.R
 \name{logout}
 \alias{logout}
-\title{Logout from PhotosynQ}
+\title{Logout from 'PhotosynQ'}
 \usage{
 logout()
 }
+\value{
+Session data is removed from the global variables. Nothing is
+  returned
+}
 \description{
-Logout from PhotosynQ and end session
+Logout from 'PhotosynQ' and end session
 }
 \details{
-This function ends the current session and logs out the current user out from PhotosynQ.
-Use the login function to sign in again and start a new session if needed.
+This function ends the current session and logs out the current user out from
+'PhotosynQ'. Use the login function to sign in again and start a new session
+if needed.
 }
 \examples{
 logout()

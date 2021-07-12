@@ -2,20 +2,26 @@
 % Please edit documentation in R/getProjectInfo.R
 \name{getProjectInfo}
 \alias{getProjectInfo}
-\title{Get Project Information from PhotosynQ}
+\title{Get Project Information from 'PhotosynQ'}
 \usage{
 getProjectInfo(projectID = "")
 }
 \arguments{
-\item{projectID}{The ID of your Project (Just copy the Project ID from the project page or your user page)}
+\item{projectID}{The ID of your Project (Just copy the Project ID from the
+project page or your user page)}
+}
+\value{
+Project information is returned in the 'JSON' format. In case of
+  issues it will return \code{NULL}.
 }
 \description{
-Get Project Information using the Projects ID
+Get Project Information using the Project's ID
 }
 \details{
-This function receives the information about a project from PhotosynQ including used Protocols
-and Project Questions. The information is also required to process the Project's data for
-the data frame used in the createDateframe function.
+This function receives the information about a project from 'PhotosynQ'
+including used Protocols and Project Questions. The information is also
+required to process the Project's data for the data frame used in the
+\code{\link{createDateframe}} function.
 }
 \examples{
 getProjectInfo(1566)

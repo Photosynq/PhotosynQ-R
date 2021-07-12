@@ -2,22 +2,29 @@
 % Please edit documentation in R/createDataframe.R
 \name{createDataframe}
 \alias{createDataframe}
-\title{Generate a Data Frame from PhotosynQ project data}
+\title{Generate a Data Frame from 'PhotosynQ' project data}
 \usage{
 createDataframe(project_info = NULL, project_data = NULL)
 }
 \arguments{
-\item{project_info}{Object returned by getProjectInfo()}
+\item{project_info}{Object returned by \code{\link{getProjectInfo}}}
 
-\item{project_data}{Object returned by getProjectData()}
+\item{project_data}{Object returned by \code{\link{getProjectData}}}
+}
+\value{
+Data frame(s) with Project's data for subsequent analysis. In case of
+  issues it will return \code{NULL}.
 }
 \description{
-This function creates a data frame with the data for a single PhotosynQ Project.
+This function creates a data frame with the data for a single 'PhotosynQ'
+Project.
 }
 \details{
-This function allows to create a data frame based on the Project's information (getProjectInfo) and
-the Project's data (getProjectData). If more than one Protocol was used in a Project, the data frame
-contains multiple frames, each one named after the corresponding measurement Protocol.
+This function allows to create a data frame based on the Project's
+information (\code{\link{getProjectInfo}}) and the Project's data
+(\code{\link{getProjectData}}). If more than one Protocol was used in a
+Project, the data frame contains multiple frames, each one named after the
+corresponding measurement Protocol.
 }
 \examples{
 project_info <- getProjectInfo(1566)

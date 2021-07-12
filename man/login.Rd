@@ -2,7 +2,7 @@
 % Please edit documentation in R/login.R
 \name{login}
 \alias{login}
-\title{Login to PhotosynQ}
+\title{Login to 'PhotosynQ'}
 \usage{
 login(email = "", url = photosynq.env$DEFAULT_API_DOMAIN)
 }
@@ -11,15 +11,24 @@ login(email = "", url = photosynq.env$DEFAULT_API_DOMAIN)
 
 \item{url}{(optional) Change the default URL to point to another instance}
 }
+\value{
+Session key is received and session data is stored as a global
+  variable. Otherwise nothing is returned.
+}
 \description{
-Login to PhotosynQ to allow data access.
+Login to 'PhotosynQ' to allow data access.
 }
 \details{
-This function allows a user to login to PhotosynQ and start a session.
-The functions getProjectInfo(), getProjectData(), getProject() and logout()
-require a session started by login in.
-Login is only required once at the beginning of a session.
+This function allows a user to login to 'PhotosynQ' and start a session. The
+functions \code{\link{getProjectInfo}}, \code{\link{getProjectData}},
+\code{\link{getProject}} and \code{\link{logout}} require a session started
+by login in. A login is only required once at the beginning of a session.
 }
+\section{Note}{
+ The password needs to be entered in a dialog and gets never
+  saved nor should it be saved anywhere in the code.
+}
+
 \examples{
 \dontrun{
 login("john.doe@domain.com")

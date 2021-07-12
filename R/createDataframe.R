@@ -1,16 +1,21 @@
-#' Generate a Data Frame from PhotosynQ project data
-#' 
-#' This function creates a data frame with the data for a single PhotosynQ Project.
-#' 
-#' This function allows to create a data frame based on the Project's information (getProjectInfo) and
-#' the Project's data (getProjectData). If more than one Protocol was used in a Project, the data frame
-#' contains multiple frames, each one named after the corresponding measurement Protocol.
-#' 
-#' @param project_info Object returned by getProjectInfo()
-#' @param project_data Object returned by getProjectData()
-#' 
+#' Generate a Data Frame from 'PhotosynQ' project data
+#'
+#' This function creates a data frame with the data for a single 'PhotosynQ'
+#' Project.
+#'
+#' This function allows to create a data frame based on the Project's
+#' information (\code{\link{getProjectInfo}}) and the Project's data
+#' (\code{\link{getProjectData}}). If more than one Protocol was used in a
+#' Project, the data frame contains multiple frames, each one named after the
+#' corresponding measurement Protocol.
+#'
+#' @param project_info Object returned by \code{\link{getProjectInfo}}
+#' @param project_data Object returned by \code{\link{getProjectData}}
+#' @return Data frame(s) with Project's data for subsequent analysis. In case of
+#'   issues it will return \code{NULL}.
+#'
 #' @export createDataframe
-#' 
+#'
 #' @keywords Project data frame
 #' @examples
 #' project_info <- getProjectInfo(1566)
@@ -22,14 +27,14 @@ createDataframe <- function(project_info = NULL, project_data = NULL){
     if(!is.null(project_info) && !is.null(project_data)){
 
         # Print Project data receival information
-        cat("Project data received, generating data frame.\n")
+        message("Project data received, generating data frame.")
 
         # Exclusion list
         ToExclude <- c("protocol_number","protocol_id","id","protocol_name","baseline_values","chlorophyll_spad_calibration","averages","baseline_sample","HTML","Macro","GraphType","time","time_offset","get_ir_baseline","get_blank_cal","get_userdef0","get_userdef1","get_userdef2","get_userdef3","get_userdef4","get_userdef5","get_userdef6","get_userdef7","get_userdef8","get_userdef9","get_userdef10","get_userdef11","get_userdef12","get_userdef13","get_userdef14","get_userdef15","get_userdef16","get_userdef17","get_userdef18","get_userdef19","get_userdef20","r","g","b","recall","messages","order","set")
-        
+
         # Since we have all the information ready
         # now it is time to preprocess the data
-        
+
         # Let's count the protocols first, to see which ones we actually need
         # and generate a lookup table
         protocols <- list();
@@ -117,7 +122,7 @@ createDataframe <- function(project_info = NULL, project_data = NULL){
             protocols[[p]][["parameters"]] <- unique(protocols[[p]][["parameters"]])
         }
 
-        # Now that the preprocessing is done, we can start putting 
+        # Now that the preprocessing is done, we can start putting
         # the data into the data frame
 
         spreadsheet <- list();
@@ -127,7 +132,7 @@ createDataframe <- function(project_info = NULL, project_data = NULL){
             if(protocols[[p]]$count == 0){
                 next
             }
-            
+
             spreadsheet[[p]] <- list()
 
             spreadsheet[[p]][["datum_id"]] <- c(1)
@@ -185,7 +190,7 @@ createDataframe <- function(project_info = NULL, project_data = NULL){
                     if(param == "device_id"){
                         spreadsheet[[protocolID]][["device_id"]] <- c(spreadsheet[[protocolID]][["device_id"]], toString(measurement$device_id))
                         next
-                    }                                                                
+                    }
 
                     if(param == "latitude"){
                         if(is.null(measurement$location) || is.na(measurement$location)){
@@ -205,7 +210,7 @@ createDataframe <- function(project_info = NULL, project_data = NULL){
                             spreadsheet[[protocolID]][["longitude"]] <- c(spreadsheet[[protocolID]][["longitude"]], as.numeric(measurement$location[[2]]))
                         }
                         next
-                    }                                                                
+                    }
 
                     if(param == "notes"){
                         spreadsheet[[protocolID]][["notes"]] <- c(spreadsheet[[protocolID]][["notes"]], toString(measurement$note))
@@ -248,7 +253,7 @@ createDataframe <- function(project_info = NULL, project_data = NULL){
 
             if(exists("custom", measurement)){
                 protocolID <- "custom"
-                
+
                 for(param in names(spreadsheet[[protocolID]])){
 
                     if(param == "datum_id"){
@@ -270,7 +275,7 @@ createDataframe <- function(project_info = NULL, project_data = NULL){
                     if(param == "device_id"){
                         spreadsheet[[protocolID]][["device_id"]] <- c(spreadsheet[[protocolID]][["device_id"]], toString(measurement$device_id))
                         next
-                    }                                                                
+                    }
 
                     if(param == "latitude"){
                         if(is.null(measurement$location) || is.na(measurement$location)){
@@ -290,7 +295,7 @@ createDataframe <- function(project_info = NULL, project_data = NULL){
                             spreadsheet[[protocolID]][["longitude"]] <- c(spreadsheet[[protocolID]][["longitude"]], as.numeric(measurement$location[[2]]))
                         }
                         next
-                    }                                                                
+                    }
 
                     if(param == "notes"){
                         spreadsheet[[protocolID]][["notes"]] <- c(spreadsheet[[protocolID]][["notes"]], toString(measurement$note))
@@ -357,7 +362,7 @@ createDataframe <- function(project_info = NULL, project_data = NULL){
         return(dfs)
     }
     else{
-        cat("Warning: Missing objects\n")
+        warning("Missing objects")
         return(NULL)
     }
 }

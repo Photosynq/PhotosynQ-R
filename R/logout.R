@@ -1,13 +1,17 @@
-#' Logout from PhotosynQ
-#' 
-#' Logout from PhotosynQ and end session
+#' Logout from 'PhotosynQ'
 #'
-#' This function ends the current session and logs out the current user out from PhotosynQ.
-#' Use the login function to sign in again and start a new session if needed.
-#' 
+#' Logout from 'PhotosynQ' and end session
+#'
+#' This function ends the current session and logs out the current user out from
+#' 'PhotosynQ'. Use the login function to sign in again and start a new session
+#' if needed.
+#'
+#' @return Session data is removed from the global variables. Nothing is
+#'   returned
+#'
 #' @export logout
 #' @import httr
-#' 
+#'
 #' @keywords logout
 #' @examples
 #' logout()
@@ -24,12 +28,12 @@ logout <- function(){
         assign( "EMAIL", NULL, envir = photosynq.env )
         assign( "TOKEN", NULL, envir = photosynq.env )
         assign( "API_DOMAIN", photosynq.env$DEFAULT_API_DOMAIN, envir = photosynq.env )
-        cat("Goodbye!\n")
+        message("Signed out")
     }
     else {
         assign( "EMAIL", NULL, envir = photosynq.env )
         assign( "TOKEN", NULL, envir = photosynq.env )
         assign( "API_DOMAIN", photosynq.env$DEFAULT_API_DOMAIN, envir = photosynq.env )
-        cat("Warning: It seems you are already signed out.\n")
+        warning("It seems you are already signed out")
     }
 }

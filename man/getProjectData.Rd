@@ -2,27 +2,41 @@
 % Please edit documentation in R/getProjectData.R
 \name{getProjectData}
 \alias{getProjectData}
-\title{Get Project Data from PhotosynQ}
+\title{Get Project Data from 'PhotosynQ'}
 \usage{
 getProjectData(projectID = "", processedData = TRUE, rawTraces = FALSE)
 }
 \arguments{
-\item{projectID}{The ID of your Project (Just copy the Project ID from the project page or your user page)}
+\item{projectID}{The ID of your Project (Just copy the Project's ID from the
+project page or your user page)}
 
-\item{processedData}{(optional) Receive the processed data when set to TRUE, receive raw Data when set to FALSE. (raw data will increases data size significantly!)}
+\item{processedData}{(optional) Receive the processed data when set to
+\code{TRUE}, receive raw Data when set to \code{FALSE}.}
 
-\item{rawTraces}{(optional) Adds raw traces to processed data. It is ignored when processedData is set to TRUE. (increases data size significantly!)}
+\item{rawTraces}{(optional) Adds raw traces to processed data. It is ignored
+when processedData is set to \code{TRUE}.}
+}
+\value{
+Project data is returned in the 'JSON' format. In case of issues it
+  will return \code{NULL}.
 }
 \description{
-Get Project Data using the Projects ID
+Get Project Data using the Project's ID
 }
 \details{
-This function receives the data from PhotosynQ for a specific Project. The revceived data is in the original JSON structure.
-When setting the processedDate to FALSE the raw data will be received instead of the processed data. By default the 
-processed data is not included. The parameter rawTraces can be set to TRUE to include the rawTraces in combination with
-the processed data. By default the traces are not received.
-Note: Including the raw data will increase the data size significantly.
+This function receives the data from 'PhotosynQ' for a specific Project. The
+revceived data is in the original 'JSON' structure. When setting the
+\code{processedDate} to \code{FALSE} the raw data will be received instead of
+the processed data. By default the processed data is not included. The
+parameter \code{rawTraces} can be set to \code{TRUE} to include the
+\code{rawTraces} in combination with the processed data. By default the
+traces are not received.
 }
+\section{Note}{
+ Including the raw data and/or the traces will increase the
+  data frame size significantly.
+}
+
 \examples{
 getProjectData(1566)
 }
